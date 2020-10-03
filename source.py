@@ -1,17 +1,18 @@
-import wx
+from tkinter import *
 
+width=400
+height=400
 
-APP_EXIT = 1
+root = Tk('root')
 
-class MyFrame(wx.Frame):
+root.geometry(f'{width}x{height}+{root.winfo_screenwidth() // 2 - width // 2}+{root.winfo_screenheight() // 2 - height // 2}')
+#root.resizable(False,False)
 
-    def __init__(self, parent, title, size):
-        super().__init__(parent=parent, title=title, size=size, style=wx.CLIP_CHILDREN)
+canv = Canvas(root, width=width, height=height)
+canv.pack()
 
-app = wx.App()
-
-frame = MyFrame(None, 'Custom window style', (1280, 720))
-frame.Center()
-frame.Show()
-
-app.MainLoop()
+for y in range(40):
+    for x in range(40):
+        canv.create_line(x*10,y*10,x*10+10,y*10)
+        canv.create_line(x*10,y*10,x*10,y*10+10)
+root.mainloop()
